@@ -10,15 +10,23 @@ local function startup()
         return
     end
 
+    local first_dir = startup_dirs[1]
+
     local tab1, _, window = mux.spawn_window {
-        cwd = startup_dirs[1]
+        cwd = first_dir.path
     }
+    if first_dir.title then
+        tab1:set_title(first_dir.title)
+    end
 
     for i = 2, #startup_dirs do
         local dir = startup_dirs[i]
-        window:spawn_tab({
-            cwd = dir
+        local tab = window:spawn_tab({
+            cwd = dir.path
         })
+        if dir.title then
+            tab:set_title(dir.title)
+        end
     end
 
     tab1:activate()

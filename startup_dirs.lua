@@ -1,5 +1,5 @@
 local wezterm = require('wezterm')
 
 return {
-    wezterm.home_dir
+    { title = "home", path = wezterm.home_dir },
 }
