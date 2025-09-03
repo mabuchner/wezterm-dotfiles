@@ -16,4 +16,4 @@ cd ~/.config
 git clone https://github.com/mabuchner/wezterm-dotfiles.git wezterm
 ```
 
-4. Add start up directories do `startup_dirds.lua`.
+4. Add start up directories to `startup_dirds.lua`.
