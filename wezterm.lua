@@ -1,7 +1,6 @@
 local wezterm = require('wezterm')
 local startup = require('./startup')
 
--- local config = {}
 local config = wezterm.config_builder()
 
 config.color_scheme = 'Tokyo Night Storm'
@@ -33,7 +32,12 @@ config.keys = {
     },
 }
 
-wezterm.on('gui-startup', startup)
+config.notification_handling = "AlwaysShow"
 
+wezterm.on('window-config-reloaded', function(window, pane)
+    window:toast_notification('wezterm', 'configuration reloaded!', nil, 4000)
+end)
+
+wezterm.on('gui-startup', startup)
 
 return config
