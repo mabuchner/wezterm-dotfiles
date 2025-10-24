@@ -1,7 +1,8 @@
 local wezterm = require('wezterm')
 local startup = require('./startup')
 
-local config = {}
+-- local config = {}
+local config = wezterm.config_builder()
 
 config.color_scheme = 'Tokyo Night Storm'
 config.font = wezterm.font('Source Code Pro')
@@ -23,6 +24,16 @@ config.window_padding = {
 
 config.window_decorations = "RESIZE"
 
+config.keys = {
+    -- Custom Claude Code configuration (/terminal-setup)
+    {
+        key = "Enter",
+        mods = "SHIFT",
+        action = wezterm.action { SendString = "\x1b\r" }
+    },
+}
+
 wezterm.on('gui-startup', startup)
+
 
 return config
